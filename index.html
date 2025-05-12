@@ -13,7 +13,7 @@
     }
 
     .video-section {
-      height: 900vh;
+      height: 3000vh;
     }
 
     #scrolly-video {
@@ -36,6 +36,8 @@
     new ScrollyVideo({
         scrollyVideoContainer: "scrolly-video",
         src: 'video/output.webm',
+        transitionSpeed: 1,
+        frameThreshold: 0.8
     });
   </script>
 
