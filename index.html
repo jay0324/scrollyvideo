@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta charset="UTF-8" />
   <title>ScrollVideo</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" />
@@ -14,17 +15,18 @@
     }
 
     .video-section {
-      /* height: 14040px; */
       height: 3000vh;
     }
 
     #scrolly-video {
       width: 100%;
-      height: auto;
+      height: 100vh;
     }
 
     video {
+      width: 100vw !important;
       object-fit: cover;
+      display: block;
     }
 
     /* 百分比文字置中樣式 */
@@ -35,7 +37,10 @@
       transform: translate(-50%, -50%);
       color: #fff;
       z-index: 9999;
-      font-size: 24px;
+      font-size: 5vw;
+      max-width: 90vw;
+      text-align: center;
+      white-space: nowrap;
       background: rgba(0, 0, 0, 0.7);
       padding: 12px 24px;
       border-radius: 8px;
@@ -82,8 +87,6 @@
         new ScrollyVideo({
           scrollyVideoContainer: "scrolly-video",
           src: blobUrl,
-          // transitionSpeed: 1,
-          // frameThreshold: 0.8
         });
 
         NProgress.done();
