@@ -65,10 +65,30 @@
   <script src="https://cdn.jsdelivr.net/npm/scrolly-video@latest/dist/scrolly-video.js"></script>
 
   <script>
+    let currentOrientation = window.innerWidth / window.innerHeight <= 1.1;
+    window.addEventListener('resize', () => {
+      const isNowPortraitOrSquare = window.innerWidth / window.innerHeight <= 1.1;
+
+      if (isNowPortraitOrSquare !== currentOrientation) {
+        location.reload();
+      }
+    });
+
     // 啟動 NProgress
     NProgress.start();
 
-    const videoUrl = 'video/output.webm';
+    // 判斷裝置方向
+    function getOrientationVideoUrl() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      const aspectRatio = width / height;
+      const isPortraitOrSquare = aspectRatio <= 1.1;
+
+      return isPortraitOrSquare ? 'video/portrait.webm' : 'video/landscape.webm';
+    }
+
+    const videoUrl = getOrientationVideoUrl();
     const xhr = new XMLHttpRequest();
     xhr.open('GET', videoUrl, true);
     xhr.responseType = 'blob';
@@ -95,7 +115,8 @@
     };
 
     xhr.send();
-  </script>
+</script>
+
 
 </body>
 </html>
